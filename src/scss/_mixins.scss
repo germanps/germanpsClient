@@ -1,0 +1,196 @@
+//Mixins
+@mixin flex($w, $d, $j, $a){
+    width: $w;
+    display: flex;
+    flex-direction: $d;
+    justify-content: $j;
+    align-items: $a;
+}
+
+@mixin placeholder($color, $size){
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $color;
+        padding-left: .5rem;
+        font-size: $size;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+        color: $color;
+        padding-left: .5rem;
+        font-size: $size;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+        color: $color;
+        padding-left: .5rem;
+        font-size: $size;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+        color: $color;
+        padding: .5rem;
+        font-size: $size;
+    }
+}
+@mixin radio($color){
+    position: relative;
+    input[type="radio"] {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none; /* in case this ever gets supported */
+        background: none;
+        opacity: .00001;
+        z-index: 2;
+    }
+    & > label {
+        display: inline-block;
+        padding: .9rem .5rem .75rem 2rem;
+    }
+    & > input[type="radio"],
+    & > label:before,
+    & > label:after {
+        border: 1px solid;
+        height: 1.125rem;
+        left: .125rem;
+        position: absolute;
+        top: .825rem;
+        width: 1.125rem;
+    }
+
+    & > input[type="radio"],
+    & > label:before,
+    & > label:after {
+        border-radius: 100%;
+        content: " ";
+        transition:
+            border-color .2s ease-in-out,
+            box-shadow .2s ease-in-out;
+    }
+
+    & > label:after {
+        border-color: $color;
+    }
+
+    & > label:before {
+        border-color: transparent;
+        box-shadow: 0 0 0 0px rgba(0,0,0,0);
+    }
+
+    & > input:checked ~ label:before {
+        border-color: transparent;
+        box-shadow: 0 0 0 2px $color;
+    }
+
+    & > input:focus ~ label:before {
+        border-color: transparent;
+        box-shadow: 0 0 0 3px $color;
+    } 
+
+    & > input:checked ~ label:after {
+        border-color: #fff;
+        border-width: 3px;
+        box-shadow: inset 0 0 0 8px $color;
+        height: 14px;
+        width: 14px;
+    }
+
+    & > input[disabled] ~ label {
+        opacity: .5;
+    }
+
+    @media screen and (-ms-high-contrast: active) {
+        & > input:checked ~ label:before {
+            background: window;
+            border: 6px solid buttonface;
+            box-shadow: none;
+        }
+    } 
+
+}
+/*Checkbox*/
+@mixin checkbox($color){
+    
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: 1rem;
+
+    & > input[type="checkbox"] {
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        margin-left: -2rem;
+        margin-top: .85rem;
+        opacity: .00001;
+        position: relative;
+        vertical-align: top;
+        z-index: 2;
+    }
+
+    & > label {
+        padding: .75rem 1rem;
+        vertical-align: bottom;
+        cursor: pointer;
+    }
+
+    & > label:before,
+    & > input[type="checkbox"] {
+        height: 1.2rem;
+        left: .125rem;
+        width: 1.2rem;
+        cursor: pointer;
+    }
+
+    & > label:before,
+    & > label:after {
+        border: 1px solid;
+        content: " ";
+        position: absolute;
+        transition:
+            border-color .2s ease-in-out,
+            box-shadow .2s ease-in-out,
+            transform .2s ease-in-out;
+    }
+
+    & > label:before {
+        border-color: $color;
+        box-shadow: 0 0 0 1px $color;
+        height: 1.125rem;
+        left: .125rem;
+        top: .825rem;
+        width: 1.125rem;
+    }
+
+    & > label:after {
+        border: 0;
+        border-bottom: 2px solid $color;
+        border-right: 2px solid $color;
+        height: .825rem;
+        left: .425rem;
+        top: .825rem;
+        transform-origin: center center;
+        transform: rotate(45deg) scale(0);
+        width: .5rem;
+    }
+
+    & > input:checked ~ label:before {
+        border-color: transparent;
+        box-shadow: 0 0 0 2px $color;
+    }
+
+    & > input:focus ~ label:before {
+        border-color: transparent;
+        box-shadow: 0 0 0 3px $color;
+        outline-offset: 2px;
+        outline: 2px solid transparent;
+    }
+
+    & > input:checked ~ label:after {
+        transform: rotate(45deg) scale(1);
+    }
+
+    & > input:checked:focus ~ label:after {
+        border-color: $color;
+    }
+
+    & > input[disabled] ~ label {
+        opacity: .625;
+    }
+    
+}

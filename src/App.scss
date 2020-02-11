@@ -1,0 +1,8 @@
+@import './scss/index.scss';
+
+.app{
+    @include flex(100%, row, flex-start, center);
+    h1{
+        color: $primary-color;
+    }
+}
