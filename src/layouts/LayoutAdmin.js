@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Layout } from "antd";
 import "./LayoutAdmin.scss";
+import MenuTop from "../components/Admin/MenuTop";
 
 export default function LayoutAdmin(props) {
     
@@ -14,7 +15,7 @@ export default function LayoutAdmin(props) {
             {/* TO DO: Aside menu} */}
             <Layout className="layout-admin">
                 <Header className="layout-admin__header">
-                    {/* TODO: Menú top */}
+                    <MenuTop />
                 </Header>
                 <Content className="layout-admin__content">
                     <LoadRoutes routes={routes} />
@@ -33,13 +34,13 @@ function LoadRoutes({routes}) {
     return(
         <Switch>
             {routes.map((route, index) => (
-            <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={route.component}
-            />
-        ))}
+                <Route
+                    key={index}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.component}
+                />
+            ))}
         </Switch>
     );
 }

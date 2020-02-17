@@ -9,6 +9,7 @@
         //left: 0;
         @include flex(100%, row, flex-start, flex-start);
         height: 65px;
+        background-color: $primary-color;
     }
 
     &__content{
