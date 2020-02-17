@@ -15,14 +15,31 @@ $gray: #919191;
 $scorpion: #606060;
 $abbey: #555a5f;
 $sahara: #abb618;
-$sun: #f7a90b;
 $black: #000000;
 
 /*Media query*/
-$min-small: 320px; 
-$min-smart-phone: 480px;
-$min-medium: 768px;
-$min-large: 992px;
+// $min-small: 320px; 
+// $min-smart-phone: 480px;
+// $min-medium: 768px;
+// $min-large: 992px;
+
+
+// Responsive down size
+$media-beackpoint-down-xs: 413.98px;
+$media-beackpoint-down-sm: 573.98px;
+$media-beackpoint-down-md: 767.98px;
+$media-beackpoint-down-lg: 991.98px;
+$media-beackpoint-down-xl: 1199.98px;
+
+// Responsive up size
+$media-beackpoint-up-xs: 320px;
+$media-beackpoint-up-sm: 576px;
+$media-beackpoint-up-md: 768px;
+$media-beackpoint-up-lg: 992px;
+$media-beackpoint-up-xl: 1200px;
 
 //font
 $roboto: 'Roboto Condensed', sans-serif !important;
+
+//sizes
+$defaultFontSize: 16px;
