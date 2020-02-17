@@ -1,0 +1,21 @@
+@import '../../../scss/index.scss';
+
+.aside-menu{
+    background-color: $primary-color;
+    overflow: auto;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 65px;
+    margin: 0;
+    .ant-menu{
+        background-color: $primary-color;
+    }
+    .ant-menu-item{
+        //background-color: $primary-color;
+   
+        &.ant-menu-item-selected{
+            background-color: $secondary-color !important;
+        } 
+    }
+}
