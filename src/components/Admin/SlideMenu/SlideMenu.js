@@ -1,12 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Layout, Menu, Icon, Slider} from 'antd';
+import { Layout, Menu, Icon } from 'antd';
 import './SlideMenu.scss';
 
-export default function SlideMenu(){
+export default function SlideMenu(props){
+    const { menuCollapsed } = props;
     const { Sider } = Layout;
     return(
-        <Sider className="aside-menu">
+        <Sider className="aside-menu" collapsed={menuCollapsed}>
             <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
                 <Menu.Item key="1">
                     <Link to={"/admin"}>

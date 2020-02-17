@@ -3,8 +3,10 @@ import "./MenuTop.scss";
 import logo from '../../../assets/img/png/logo-squalo.png';
 import { Button, Icon } from 'antd';
 
-export default function MenuTop () {
-
+export default function MenuTop (props) {
+    
+    const { menuCollapsed, setMenuCollapsed } = props;
+    
     return (
         <div className="menu-top">
             <div className="menu-top__left">
@@ -13,10 +15,10 @@ export default function MenuTop () {
                 </div>
                 <Button
                     type="link"
-                    onClick={() => console.log("click menu")}
+                    onClick={() => setMenuCollapsed(!menuCollapsed) }
                     className=""
                 >
-                    <Icon type="menu-fold" />
+                    <Icon type={menuCollapsed ? "menu-unfold" : "menu-fold"} />
                 </Button>
             </div>
             <div className="menu-right">
