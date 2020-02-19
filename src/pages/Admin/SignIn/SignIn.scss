@@ -1,0 +1,75 @@
+@import "./../../../scss/index.scss";
+
+.sign-in{
+    background-image: url(../../../assets/img/jpg/background-v1.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+
+    &__content {
+        @include flex(100%, column, flex-start, center);
+        min-height: 100vh;
+
+        &-logo{
+            max-width: 150px;
+            margin: 2rem 0;
+            img{
+                width: 100%;
+                height: auto;
+                height: auto;
+            }
+        }
+        &-tabs{
+            background-color:  $white;
+
+            .ant-tabs{
+                width: 90vh;
+
+                @media (min-width: $media-up-lg){
+                    width: auto;
+                }
+            }
+            .ant-tabs-nav-container{
+                height: 60px !important;
+            }
+            .ant-tabs-nav {
+                width: 100%;
+            }
+            .ant-tabs-tab {
+                width: 50%;
+                margin: 0;
+                height: 60px !important;
+                text-align: center;
+                font-size: 0em + 19px / $defaultFontSize;
+                border-top: 4px solid $primary-color-light !important;
+                border-radius: 0 !important;
+                @media (min-width: $media-up-lg){
+                    width: 220px;
+                    font-size: $defaultFontSize;
+                }
+
+                &:hover{
+                    color: $primary-color-dark;
+                }
+                &:before{
+                    content: none;
+                }
+                span{
+                    height: 100%;
+                    @include flex(100%, row, center, center);
+                }
+            }
+
+            .ant-tabs-tab-active{
+                color: $secondary-color !important;
+                border-radius: 0 !important;
+                border-top: 4px solid $secondary-color !important;
+            }
+
+            .ant-tabs-content{
+                padding: 0 16px 16px 16px;
+                text-align: center;
+            }
+        }
+    }
+}
