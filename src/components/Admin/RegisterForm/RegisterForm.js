@@ -74,7 +74,7 @@ export default function RegisterForm () {
                    checked={input.privacyPolicy}
                    onChange={handleChangeForm}
                 >
-                    He leído y acpto la política de privacidad
+                    He leído y acepto la política de privacidad
                 </Checkbox>
             </Form.Item>
             <Form.Item> 
