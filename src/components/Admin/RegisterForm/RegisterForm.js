@@ -23,7 +23,7 @@ export default function RegisterForm () {
                     className="register-form__input"
                 />
             </Form.Item>
-            <Form.Item> 
+            <Form.Item > 
                 <Input
                     prefix={<Icon type="lock" style={{color: "rgba(0,0,0,0.25)"}} />}
                     type="password"
@@ -32,7 +32,7 @@ export default function RegisterForm () {
                     className="register-form__input"
                 />
             </Form.Item>
-            <Form.Item> 
+            <Form.Item className="no-margin"> 
                 <Checkbox
                    name="privacyPolicy"
                 >
@@ -42,7 +42,7 @@ export default function RegisterForm () {
             <Form.Item> 
                 <Button
                     htmlType="submit"
-                    className="register-from__button"
+                    className="register-form__button"
                 >
                     Crear cuenta
                 </Button>
