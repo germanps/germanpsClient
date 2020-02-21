@@ -44,6 +44,12 @@
                 font-size: 2rem;
                 text-transform: lowercase;
                 letter-spacing: -1px;
+                margin-top: .5rem;
+            }
+            &--bold{
+                font-weight: bold;
+                text-transform: uppercase;
+                color: $secondary-color;
             }
         }
         &-tabs{

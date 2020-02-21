@@ -19,7 +19,7 @@ export default function SignIn() {
                     <h1 className="sign-in__content__logo-wrapper--logo">
                         <img src={Logo} alt="Germán Pla Sepúlveda" />
                     </h1> 
-                    <span className="sign-in__content__logo-wrapper--name">&#60; germanps &#47;&#62;</span>
+                    <span className="sign-in__content__logo-wrapper--name">&#123; german<span className="sign-in__content__logo-wrapper--bold">ps</span> &#125;</span>
                 </div>
                 <div className="sign-in__content-tabs">
                     <Tabs type="card">
