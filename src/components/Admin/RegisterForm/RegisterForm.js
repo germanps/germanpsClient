@@ -5,6 +5,7 @@ import {
     emailValidation, 
     minLengthValidation 
 } from '../../../utils/formValidation';
+import { signUpApi } from "../../../api/user";
 
 export default function RegisterForm () {
 
@@ -76,8 +77,9 @@ export default function RegisterForm () {
                     message: "Las contraseñas tienen que ser iguales"
                 });
             }else{
-                //TO DO: Conectar con la API y registrar el usuario
+                const result = signUpApi(input);
                 
+
                 // notification["success"]({
                 //     message: "Cuenta creada con éxito!"
                 // })
