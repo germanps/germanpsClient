@@ -61,8 +61,28 @@ export default function RegisterForm () {
 
     const handleSubmitForm = e => {
         e.preventDefault();
-        console.log(formValid);
-        
+        const { email, password, repeatPassword, privacyPolicy } = formValid;
+        // const emailVal = input.email;
+        // const passwordVal = input.password;
+        // const repeatPasswordVal = input.repeatPassword;
+        // const privacyPolicyVal = input.privacyPolicy;
+        if(!email || !password || !repeatPassword || !privacyPolicy){
+            notification["error"]({
+                message: "Todos los campos son obligatorios"
+            });
+        }else{
+            if(password !== repeatPassword){
+                notification["error"]({
+                    message: "Las contraseñas tienen que ser iguales"
+                });
+            }else{
+                //TO DO: Conectar con la API y registrar el usuario
+                
+                // notification["success"]({
+                //     message: "Cuenta creada con éxito!"
+                // })
+            }
+        }
     }
 
     return(
