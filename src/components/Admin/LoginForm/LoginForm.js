@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./LoginForm.scss";
 import { Form, Icon, Input, Button, notification } from 'antd';
 
 export default function LoginForm() {
+
+    //states
+    const [inputs, setInputs] = useState({
+        email: "",
+        password: ""
+    });
+
+    //Methods
+    const handleChangeForm = e => {
+        setInputs({
+            ...inputs,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    const handleLogin = e => {
+        e.preventDefault();
+        console.log(inputs);
+    }
+
     return (
-        <Form className="login-form">
+        <Form className="login-form" onChange={handleChangeForm} onSubmit={handleLogin}>
             <Form.Item>
                 <Input
                     prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25"}} />}
@@ -24,7 +44,7 @@ export default function LoginForm() {
                 />
             </Form.Item>
             <Form.Item>
-                <Button htmlType="submit" className="login-form__button" value="Entrar"/>
+                <Button htmlType="submit" className="login-form__button">Entrar</Button>
             </Form.Item>
         </Form>
     )
