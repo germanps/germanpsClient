@@ -4,6 +4,7 @@ import { Redirect } from "react-router-dom";
 import Logo from '../../../assets/img/png/logo-squalo.png';
 import video from '../../../assets/video/video-intro.mp4';
 import RegisterForm from '../../../components/Admin/RegisterForm';
+import LoginForm from '../../../components/Admin/LoginForm';
 import "./SignIn.scss";
 
 export default function SignIn() {
@@ -24,7 +25,7 @@ export default function SignIn() {
                 <div className="sign-in__content-tabs">
                     <Tabs type="card">
                         <TabPane tab={<span>Entrar</span>} key="1">
-                            Componente loginForm
+                            <LoginForm />
                         </TabPane>
                         <TabPane tab={<span>Nuevo usuario</span>} key="2">
                             <RegisterForm />
