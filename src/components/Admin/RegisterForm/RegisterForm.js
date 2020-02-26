@@ -60,31 +60,60 @@ export default function RegisterForm () {
         })
     }
 
-    const handleSubmitForm = e => {
+    const handleSubmitForm = async e => {
         e.preventDefault();
         const { email, password, repeatPassword, privacyPolicy } = formValid;
         // const emailVal = input.email;
-        // const passwordVal = input.password;
-        // const repeatPasswordVal = input.repeatPassword;
+        const passwordVal = input.password;
+        const repeatPasswordVal = input.repeatPassword;
         // const privacyPolicyVal = input.privacyPolicy;
         if(!email || !password || !repeatPassword || !privacyPolicy){
             notification["error"]({
                 message: "Todos los campos son obligatorios"
             });
         }else{
-            if(password !== repeatPassword){
+            if(passwordVal !== repeatPasswordVal){
                 notification["error"]({
                     message: "Las contraseñas tienen que ser iguales"
                 });
             }else{
-                const result = signUpApi(input);
-                
-
-                // notification["success"]({
-                //     message: "Cuenta creada con éxito!"
-                // })
+                // Validación del front OK 
+                const result = await signUpApi(input);
+                // Validamos desde el servidor
+                if(!result.ok){
+                    notification["error"]({
+                        message: result.message
+                    })
+                } else {
+                    notification["success"]({
+                        message: result.message
+                    })
+                    resetForm();
+                }
             }
         }
+    }
+
+    const resetForm = () => {
+        // quitamos las clases de los inputs
+        const inputs = document.getElementsByTagName("input");
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].classList.remove("success");
+            inputs[i].classList.remove("error");
+        }
+        // reseteamos los estados
+        setInput({
+            email: "",
+            password: "",
+            repeatPassword: "",
+            privacyPolicy: false
+        });
+        setFormValid({
+            email: false,
+            password: false,
+            repeatPassword: false,
+            privacyPolicy: false
+        })
     }
 
     return(
