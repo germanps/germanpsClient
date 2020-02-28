@@ -16,12 +16,10 @@ export default function LayoutAdmin(props) {
 
     const {user, isLoading} = useAuth();
 
-    console.log(user);
-
     const accessToken = getAccessTokenApi();
     const refreshToken = getRefreshTokenApi();
 
-    if (!user) {
+    if (!user && !isLoading) {
         return(
             <>  
                 <Route path="/admin/login" component={SignIn} />
@@ -30,28 +28,35 @@ export default function LayoutAdmin(props) {
         );
     }
     
-    return(
-        <Layout>
-            <SlideMenu menuCollapsed={menuCollapsed}/>
-            <Layout className="layout-admin">
-                <Header className="layout-admin__header">
-                    <MenuTop 
-                        menuCollapsed={menuCollapsed}
-                        setMenuCollapsed={setMenuCollapsed}
-                    />
-                </Header>
-                <div className="layout-admin_wrapper" style={{marginLeft: menuCollapsed ? "80px" : "200px"}}>
-                    <Content className="layout-admin__content">
-                        <LoadRoutes routes={routes} />
-                    </Content>
-                    <Footer className="layout-admin__footer">
-                        Germán Pla 
-                    </Footer>
-                </div>
+    if (user && !isLoading) {
+        
+   
+        return(
+            <Layout>
+                <SlideMenu menuCollapsed={menuCollapsed}/>
+                <Layout className="layout-admin">
+                    <Header className="layout-admin__header">
+                        <MenuTop 
+                            menuCollapsed={menuCollapsed}
+                            setMenuCollapsed={setMenuCollapsed}
+                        />
+                    </Header>
+                    <div className="layout-admin_wrapper" style={{marginLeft: menuCollapsed ? "80px" : "200px"}}>
+                        <Content className="layout-admin__content">
+                            <LoadRoutes routes={routes} />
+                        </Content>
+                        <Footer className="layout-admin__footer">
+                            Germán Pla 
+                        </Footer>
+                    </div>
+                </Layout>
+            
             </Layout>
-         
-        </Layout>
-    );
+        );
+
+    }
+
+    return null;
 }
 
 

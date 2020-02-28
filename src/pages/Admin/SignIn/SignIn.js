@@ -6,10 +6,15 @@ import video from '../../../assets/video/video-intro.mp4';
 import RegisterForm from '../../../components/Admin/RegisterForm';
 import LoginForm from '../../../components/Admin/LoginForm';
 import "./SignIn.scss";
+import {getAccessTokenApi} from '../../../api/auth';
 
 export default function SignIn() {
     const { Content } = Layout;
     const { TabPane } = Tabs;
+    if(getAccessTokenApi()){
+        //comprobar que si se está logeado correctamente no cargar el login
+        return <Redirect to="/admin" />
+    }
     return(
         <Layout className="sign-in">
             <video loop muted autoPlay>
