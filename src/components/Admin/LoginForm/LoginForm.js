@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "./LoginForm.scss";
 import { Form, Icon, Input, Button, notification } from 'antd';
 import { signInApi } from "../../../api/user";
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '../../../utils/constants';
 
 export default function LoginForm() {
 
@@ -19,9 +20,26 @@ export default function LoginForm() {
         })
     }
 
-    const handleLogin = e => {
+    const handleLogin = async e => {
         e.preventDefault();
-        signInApi(inputs);   
+        
+        const result = await signInApi(inputs);
+        
+        if(result.message) {
+            //si existe un mensaje es de error
+            notification["error"]({
+                message: result.message
+            });
+        }else{
+            //guardamos en localstorage
+            const {accessToken, refreshToken } = result;
+            localStorage.setItem(ACCESS_TOKEN, accessToken);
+            localStorage.setItem(REFRESH_TOKEN, refreshToken);
+            notification['success']({
+                message: "Login correcto"
+            });
+            window.location.href = "/admin";
+        } 
     }
 
     return (
