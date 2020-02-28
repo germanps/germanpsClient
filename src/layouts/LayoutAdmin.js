@@ -5,6 +5,7 @@ import "./LayoutAdmin.scss";
 import MenuTop from "../components/Admin/MenuTop";
 import SlideMenu from "../components/Admin/SlideMenu";
 import SignIn from "./../pages/Admin/SignIn";
+import {getAccessToken, getRefreshToken} from '../api/auth';
 
 export default function LayoutAdmin(props) {
     
@@ -13,6 +14,9 @@ export default function LayoutAdmin(props) {
     const [ menuCollapsed, setMenuCollapsed ] = useState(false);
 
     const user = null;
+
+    const accessToken = getAccessToken();
+    const refreshToken = getRefreshToken();
 
     if (!user) {
         return(
