@@ -1,4 +1,4 @@
-import { basePaht, apiVersion } from './config';
+import { BASE_PATH, API_VERSION } from './config';
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '../utils/constants';
 import jwtDecode from 'jwt-decode';
 
@@ -18,6 +18,42 @@ export function getRefreshToken() {
     }
 
     return willExpireToken(refreshToken) ? null : refreshToken;
+}
+
+export function  refreshAccessToken(refreshToken){
+    const url = `${BASE_PATH}/api/${API_VERSION}/refresh-access-token`;
+    const bodyObj = {
+        refreshToken: refreshToken
+    }
+    const params = {
+        method: "POST",
+        body: JSON.stringify(bodyObj),
+        headers: {
+            "Content-type": "application/json"
+        }
+    };
+    fetch(url, params)
+        .then(response => {
+            if (response.status != 200) {
+                return null
+            }
+            return response.json();
+        })
+        .then(result => {
+            if (!result) {
+                // el token ha caducado y no se puede refrescar el token, se deslogea
+                logOut();
+            }else{
+                const {accessToken, refreshToken} = reusult;
+                localStorage.setItem(ACCESS_TOKEN, accessToken);
+                localStorage.setItem(REFRESH_TOKEN, refreshAccessToken);
+            }
+        })
+}
+
+export function logOut() {
+    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(REFRESH_TOKEN);
 }
 
 
