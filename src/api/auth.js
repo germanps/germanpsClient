@@ -44,7 +44,7 @@ export function  refreshAccessToken(refreshToken){
                 // el token ha caducado y no se puede refrescar el token, se deslogea
                 logOut();
             }else{
-                const {accessToken, refreshToken} = reusult;
+                const {accessToken, refreshToken} = result;
                 localStorage.setItem(ACCESS_TOKEN, accessToken);
                 localStorage.setItem(REFRESH_TOKEN, refreshAccessToken);
             }
