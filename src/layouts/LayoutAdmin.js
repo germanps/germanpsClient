@@ -5,7 +5,8 @@ import "./LayoutAdmin.scss";
 import MenuTop from "../components/Admin/MenuTop";
 import SlideMenu from "../components/Admin/SlideMenu";
 import SignIn from "./../pages/Admin/SignIn";
-import {getAccessToken, getRefreshToken} from '../api/auth';
+import { getAccessTokenApi, getRefreshTokenApi } from '../api/auth';
+import useAuth from "../hooks/useAuth";
 
 export default function LayoutAdmin(props) {
     
@@ -13,10 +14,12 @@ export default function LayoutAdmin(props) {
     const { Header, Content, Footer } = Layout;
     const [ menuCollapsed, setMenuCollapsed ] = useState(false);
 
-    const user = null;
+    const {user, isLoading} = useAuth();
 
-    const accessToken = getAccessToken();
-    const refreshToken = getRefreshToken();
+    console.log(user);
+
+    const accessToken = getAccessTokenApi();
+    const refreshToken = getRefreshTokenApi();
 
     if (!user) {
         return(
@@ -24,7 +27,7 @@ export default function LayoutAdmin(props) {
                 <Route path="/admin/login" component={SignIn} />
                 <Redirect to="/admin/login" />
             </>
-        )
+        );
     }
     
     return(
