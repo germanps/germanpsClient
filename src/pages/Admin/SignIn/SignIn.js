@@ -4,11 +4,17 @@ import { Redirect } from "react-router-dom";
 import Logo from '../../../assets/img/png/logo-squalo.png';
 import video from '../../../assets/video/video-intro.mp4';
 import RegisterForm from '../../../components/Admin/RegisterForm';
+import LoginForm from '../../../components/Admin/LoginForm';
 import "./SignIn.scss";
+import {getAccessTokenApi} from '../../../api/auth';
 
 export default function SignIn() {
     const { Content } = Layout;
     const { TabPane } = Tabs;
+    if(getAccessTokenApi()){
+        //comprobar que si se está logeado correctamente no cargar el login
+        return <Redirect to="/admin" />
+    }
     return(
         <Layout className="sign-in">
             <video loop muted autoPlay>
@@ -24,7 +30,7 @@ export default function SignIn() {
                 <div className="sign-in__content-tabs">
                     <Tabs type="card">
                         <TabPane tab={<span>Entrar</span>} key="1">
-                            Componente loginForm
+                            <LoginForm />
                         </TabPane>
                         <TabPane tab={<span>Nuevo usuario</span>} key="2">
                             <RegisterForm />
