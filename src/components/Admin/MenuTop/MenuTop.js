@@ -2,10 +2,16 @@ import React from 'react';
 import "./MenuTop.scss";
 import logo from '../../../assets/img/png/logo-squalo.png';
 import { Button, Icon } from 'antd';
+import { logOut } from '../../../api/auth';
 
 export default function MenuTop (props) {
     
     const { menuCollapsed, setMenuCollapsed } = props;
+
+    const logoutUser = () => {
+        logOut();
+        window.location.reload();
+    }
     
     return (
         <div className="menu-top">
@@ -24,7 +30,7 @@ export default function MenuTop (props) {
             <div className="menu-right">
                 <Button 
                     type="link" 
-                    onClick={() => console.log('click disconnect')}
+                    onClick={ logoutUser }
                     className=""
                 >
                     <Icon type="poweroff" />
