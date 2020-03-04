@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { Switch, List, Avatar, Button, Icon } from 'antd';
 import NoAvatar from '../../../../assets/img/png/no-avatar.png';
 import Modal from '../../../Modal';
+import EditUserForm from '../EditUserForm';
 import './ListUsers.scss';
 
 export default function ListUsers(props) {
@@ -62,8 +63,10 @@ function UsersActive(props) {
 
     const editUser = user => {
         setViewModal(true);
-        setModalTitle(`Editar usuario ${user.name ? user.name : "..."} ${user.lastname ? user.lastname : "..."}`);
-        setModalContent(`editando usuario ${user.email}`)
+        setModalTitle(
+            `Editar usuario ${user.name ? user.name : "..."} ${user.lastname ? user.lastname : "..."}`
+        );
+        setModalContent(<EditUserForm user={user}/>)
     }
 
     return (
