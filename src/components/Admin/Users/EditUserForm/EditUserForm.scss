@@ -10,4 +10,25 @@
         padding: 10px;
         margin-bottom: 20px;
     }
+
+    .edit-form{
+        text-align: center;
+
+        .ant-form-item{
+            margin-top: 5px;
+            margin-bottom: 5px;
+
+            i{
+                color: $primary-color-light;
+            }
+            .btn-submit{
+                width: 100%;
+                background-color: $sahara;
+                color: $white;
+                &:hover{
+                    border-color: transparent;
+                }
+            }
+        }
+    }
 }
