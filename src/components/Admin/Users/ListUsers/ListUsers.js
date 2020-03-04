@@ -124,13 +124,13 @@ function UsersInactives(props) {
                     actions={[
                             <Button 
                                 className="btn-primary"
-                                onClick={() => setViewModal(true)}
+                                onClick={() => console.log("activar usuario")}
                             >
                                 <Icon type="check" />
                             </Button>,
                             <Button 
 
-                                className="btn-warning"
+                                className="btn-danger"
                                 onClick={() => console.log("Borrar usuario")}
                             >
                                 <Icon type="delete" />
