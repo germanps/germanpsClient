@@ -47,8 +47,11 @@ export default function EditUserForm (props) {
                 notification["error"]({
                     message: "Las contraseñas deben ser iguales."
                 });
-            }
-            return;
+                return;
+            }else{
+                //borrar propiedad repeatPassword
+                delete userUpdate.repeatPassword;            
+            }    
         }
         if (!userUpdate.name || !userUpdate.lastname || !userUpdate.email) {
             notification["error"]({
