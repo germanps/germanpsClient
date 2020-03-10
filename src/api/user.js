@@ -92,6 +92,7 @@ export function getUsersActiveApi(token, status) {//enviamos el token para su co
         });
 }
 
+//subir imagen de usuario
 export function uploadAvatarApi(token, avatar, userId) {
     const url = `${BASE_PATH}/api/${API_VERSION}/upload-avatar/${userId}`;
     const formData = new FormData();
@@ -112,6 +113,7 @@ export function uploadAvatarApi(token, avatar, userId) {
     });
 }
 
+//obtener url de la imagen
 export function getAvatarApi(avatarName) {
     const url = `${BASE_PATH}/api/${API_VERSION}/get-avatar/${avatarName}`;
     return fetch(url).then(response => {
@@ -119,4 +121,24 @@ export function getAvatarApi(avatarName) {
     }).catch(err => {
         return err.message;
     });
+}
+
+//hacer update de un avatar
+export function updateUser(token, user, userId) {
+    const url = `${BASE_PATH}/api/${API_VERSION}/update-user/${userId}`;
+    const params = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify(user)
+    }
+    return fetch(url, params).then(response => {
+        return response.json();
+    }).then(result => {
+        return result;
+    }).catch(err => {
+        return err.message;
+    })
 }
