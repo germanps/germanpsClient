@@ -124,7 +124,7 @@ export function getAvatarApi(avatarName) {
 }
 
 //hacer update de un avatar
-export function updateUser(token, user, userId) {
+export function updateUserApi(token, user, userId) {
     const url = `${BASE_PATH}/api/${API_VERSION}/update-user/${userId}`;
     const params = {
         method: "PUT",

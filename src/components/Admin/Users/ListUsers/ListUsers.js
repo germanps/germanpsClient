@@ -7,7 +7,7 @@ import { getAvatarApi } from "../../../../api/user";
 import './ListUsers.scss';
 
 export default function ListUsers(props) {
-    const { usersActive, usersInactive } = props;
+    const { usersActive, usersInactive, setReloadUsers } = props;
     //states
     const [viewUsersActives, setUsersActives] = useState()
     const [viewModal, setViewModal] = useState(false);
@@ -31,6 +31,7 @@ export default function ListUsers(props) {
                     setViewModal={setViewModal}
                     setModalTitle={setModalTitle}
                     setModalContent={setModalContent}
+                    setReloadUsers={setReloadUsers}
                 /> 
             ) : ( 
                 <UsersInactives 
@@ -59,7 +60,8 @@ function UsersActive(props) {
         usersActive, 
         setViewModal, 
         setModalTitle, 
-        setModalContent
+        setModalContent,
+        setReloadUsers
     } = props;
 
     const editUser = user => {
@@ -67,7 +69,7 @@ function UsersActive(props) {
         setModalTitle(
             `Editar usuario ${user.name ? user.name : "..."} ${user.lastname ? user.lastname : "..."}`
         );
-        setModalContent(<EditUserForm user={user}/>)
+        setModalContent(<EditUserForm user={user} setViewModal={setViewModal} setReloadUsers={setReloadUsers} />)
     }
 
     return (

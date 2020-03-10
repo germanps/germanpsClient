@@ -1,12 +1,13 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import { Avatar, Form, Input, Icon, Select, Button, Row, Col } from 'antd';
+import { Avatar, Form, Input, Icon, Select, Button, Row, Col, notification } from 'antd';
 import { useDropzone } from "react-dropzone";//compomente basado en HOOKS
 import NoAvatar from '../../../../assets/img/png/no-avatar.png';
 import "./EditUserForm.scss";
-import { getAvatarApi } from "../../../../api/user";
+import { getAvatarApi, uploadAvatarApi, updateUserApi } from "../../../../api/user";
+import { getAccessTokenApi } from "../../../../api/auth";
 
 export default function EditUserForm (props) {
-    const { user } = props;
+    const { user, setViewModal, setReloadUsers } = props;
     const [avatar, setAvatar] = useState();
     const [userData, setUserData] = useState({});
 
@@ -38,8 +39,42 @@ export default function EditUserForm (props) {
 
     const updateUser = e => {
         e.preventDefault();
-        console.log(userData);
-        
+        const token = getAccessTokenApi();
+        let userUpdate = userData;
+
+        if (userUpdate.password || userUpdate.repeatPassword) {
+            if (userUpdate.password !== userUpdate.repeatPassword) {
+                notification["error"]({
+                    message: "Las contraseñas deben ser iguales."
+                });
+            }
+            return;
+        }
+        if (!userUpdate.name || !userUpdate.lastname || !userUpdate.email) {
+            notification["error"]({
+                message: "Todos los campos son obligatorios."
+            });
+            return;
+        }
+
+        if (typeof userUpdate.avatar === "object" ) {
+            uploadAvatarApi(token, userUpdate.avatar, user._id).then(response => {
+                userUpdate.avatar = response.avatarName;
+                updateUserApi(token, userUpdate, user._id).then(result => {
+                    notification["success"]({
+                        message: result.message
+                    });
+                });
+            });
+        }else{
+            updateUserApi(token, userUpdate, user._id).then(result => {
+                notification["success"]({
+                    message: result.message
+                });    
+            });
+        }
+        setViewModal(false);
+        setReloadUsers(true);
     }
     
 
@@ -129,7 +164,7 @@ function EditForm (props) {
                             prefix={<Icon type="mail" />}
                             placeholder="Correo electrónico"
                             value={userData.email}
-                            onChange={ e => setUserData( {...userData, lastname: e.target.value} ) }
+                            onChange={ e => setUserData( {...userData, email: e.target.value} ) }
                         />
                     </Form.Item>
                 </Col>
@@ -174,6 +209,7 @@ function EditForm (props) {
                 <Button
                     className="btn-submit"
                     htmlType="submit"
+                    
                 >
                     Actualizar usuario
                 </Button>

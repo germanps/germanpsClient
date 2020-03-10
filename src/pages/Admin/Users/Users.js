@@ -9,6 +9,7 @@ export default function Users() {
     //stado usuarios
     const [usersActive, setUsersActive] = useState([]);
     const [usersInactive, setUsersInactive] = useState([]);
+    const [reloadUsers, setReloadUsers] = useState(false);
     const token = getAccessTokenApi();    
 
     //didmount
@@ -19,13 +20,15 @@ export default function Users() {
         getUsersActiveApi(token, false).then(response => {
             setUsersInactive(response.users);
         });
-    }, [token]);
+        setReloadUsers(false);
+    }, [token, reloadUsers]);
 
     return(
         <div className="users">
             <ListUsers 
                 usersActive={usersActive}
                 usersInactive={usersInactive}
+                setReloadUsers={setReloadUsers}
             />
         </div>
     );
