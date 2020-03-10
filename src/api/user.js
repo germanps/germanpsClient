@@ -91,3 +91,32 @@ export function getUsersActiveApi(token, status) {//enviamos el token para su co
             return err.message;
         });
 }
+
+export function uploadAvatarApi(token, avatar, userId) {
+    const url = `${BASE_PATH}/api/${API_VERSION}/upload-avatar/${userId}`;
+    const formData = new FormData();
+    formData.append("avatar", avatar, avatar.name);
+    const params = {
+        method: "PUT",
+        body: formData,
+        headers: {
+            Authorization: token
+        }
+    }
+    return fetch(url, params).then(response => {
+        return response.json();
+    }).then(result => {
+        return result;
+    }).catch(err => {
+        return err.message;
+    });
+}
+
+export function getAvatarApi(avatarName) {
+    const url = `${BASE_PATH}/api/${API_VERSION}/get-avatar/${avatarName}`;
+    return fetch(url).then(response => {
+        return response.url;
+    }).catch(err => {
+        return err.message;
+    });
+}
