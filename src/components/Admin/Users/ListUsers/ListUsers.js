@@ -1,11 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import { Switch, List, Avatar, Button, Icon, notification } from 'antd';
+import { Switch, List, Avatar, Button, Icon, notification, Modal as AntdModal } from 'antd';
 import NoAvatar from '../../../../assets/img/png/no-avatar.png';
 import Modal from '../../../Modal';
 import EditUserForm from '../EditUserForm';
-import { getAvatarApi, activateUserApi } from "../../../../api/user";
+import { getAvatarApi, activateUserApi, deleteUserApi } from "../../../../api/user";
 import { getAccessTokenApi } from '../../../../api/auth';
 import './ListUsers.scss';
+
+const { confirm } = AntdModal;
 
 export default function ListUsers(props) {
     const { usersActive, usersInactive, setReloadUsers } = props;
@@ -14,18 +16,42 @@ export default function ListUsers(props) {
     const [viewModal, setViewModal] = useState(false);
     const [modalTitle, setModalTitle] = useState("");
     const [modalContent, setModalContent] = useState(null);
+
+    const addUserModal = () => {
+        setViewModal(true);
+        setModalTitle("Nuevo usuario");
+        setModalContent(
+            <div>
+                formulario nuevo usuario
+            </div>
+        )
+    }
     
     return(
         <div className="list-users">
-            <div className="list-users__switch">
-                <Switch 
-                    defaultChecked={!usersActive}
-                    onChange={() => setUsersActives(!viewUsersActives)}
-                />
-                <span>
-                    {viewUsersActives ? "Usuarios activos" : "Usuarios inactivos"}
-                </span>
+
+            <div className="list-user__header">
+
+                <div className="list-users__switch">
+                    <Switch 
+                        defaultChecked={!usersActive}
+                        onChange={() => setUsersActives(!viewUsersActives)}
+                    />
+                    <span>
+                        {viewUsersActives ? "Usuarios activos" : "Usuarios inactivos"}
+                    </span>
+                </div>
+
+                <Button
+                    type="btn-primary"
+                    className="btn-primary"
+                    onClick={addUserModal}
+                >
+                    Nuevo Usuario
+                </Button>
+
             </div>
+
             {viewUsersActives ? ( 
                 <UsersActive 
                     usersActive={usersActive}
@@ -109,6 +135,30 @@ function UserActive(props) {
         setReloadUsers(true);//reload doom 
     }
 
+    const showDeleteConfirm = () => {
+        const accessToken = getAccessTokenApi();
+
+        confirm({
+            title: "Eliminando usuario",
+            content: `¿Estas seguro que quieres eliminar a ${user.email}?`,
+            okText: "Eliminar",
+            okType: "danger",
+            cancelText: "Cancelar",
+            onOk() {
+                deleteUserApi(accessToken, user._id).then(response => {
+                    notification["success"]({
+                        message: "Usuario eliminado correctamente"
+                    });
+                    setReloadUsers(true);//reload doom 
+                }).catch(err => {
+                    notification["error"]({
+                        message: err
+                    })
+                })
+            }
+        });
+    }
+
     return(
         <List.Item
             actions={[
@@ -126,7 +176,7 @@ function UserActive(props) {
                     </Button>,
                     <Button 
                         className="btn-danger"
-                        onClick={() => console.log("Borrar usuario")}
+                        onClick={showDeleteConfirm}
                     >
                         <Icon type="delete" />
                     </Button>
@@ -186,6 +236,30 @@ function UserInactive(props) {
         setReloadUsers(true);//reload doom 
     }
 
+    const showDeleteConfirm = () => {
+        const accessToken = getAccessTokenApi();
+
+        confirm({
+            title: "Eliminando usuario",
+            content: `¿Estas seguro que quieres eliminar a ${user.email}?`,
+            okText: "Eliminar",
+            okType: "danger",
+            cancelText: "Cancelar",
+            onOk() {
+                deleteUserApi(accessToken, user._id).then(response => {
+                    notification["success"]({
+                        message: "Usuario eliminado correctamente"
+                    });
+                    setReloadUsers(true);//reload doom 
+                }).catch(err => {
+                    notification["error"]({
+                        message: err
+                    })
+                })
+            }
+        });
+    }
+
 
     return(
         <List.Item
@@ -199,7 +273,7 @@ function UserInactive(props) {
                     <Button 
 
                         className="btn-danger"
-                        onClick={() => console.log("Borrar usuario")}
+                        onClick={showDeleteConfirm}
                     >
                         <Icon type="delete" />
                     </Button>

@@ -4,7 +4,7 @@
     
     &__switch {
         @include flex(100%, row, flex-start,  center);
-        margin-bottom: 20px;
+        
 
         > button {
             margin-right: 20px;
@@ -39,6 +39,21 @@
                 &:hover{
                     border-color: transparent;
                 }
+            }
+        }
+    }
+
+    .list-user__header{
+        @include flex(100%, row, flex-start, center);
+        margin-bottom: 20px;
+        .btn-primary{
+            background-color: $secondary-color-light;
+            color: $primary-color-dark;
+            &:hover{
+                border-color: transparent;
+            }
+            &:focus{
+                border-color: $secondary-color-dark;
             }
         }
     }
