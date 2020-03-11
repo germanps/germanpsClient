@@ -134,8 +134,7 @@ function UploadAvatar(props) {
 
 function EditForm (props) {
     const { userData, setUserData, updateUser } = props;
-    const { options } = Select;
-
+    
     return(
         <Form className="edit-form" onSubmit={updateUser}>
             <Row gutter={24}>

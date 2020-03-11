@@ -3,6 +3,7 @@ import { Switch, List, Avatar, Button, Icon, notification, Modal as AntdModal } 
 import NoAvatar from '../../../../assets/img/png/no-avatar.png';
 import Modal from '../../../Modal';
 import EditUserForm from '../EditUserForm';
+import AddUserForm from '../AddUserForm';
 import { getAvatarApi, activateUserApi, deleteUserApi } from "../../../../api/user";
 import { getAccessTokenApi } from '../../../../api/auth';
 import './ListUsers.scss';
@@ -21,10 +22,12 @@ export default function ListUsers(props) {
         setViewModal(true);
         setModalTitle("Nuevo usuario");
         setModalContent(
-            <div>
-                formulario nuevo usuario
-            </div>
-        )
+            
+            <AddUserForm 
+                setViewModal={setViewModal}
+                setReloadUsers={setReloadUsers}
+            />
+        );
     }
     
     return(

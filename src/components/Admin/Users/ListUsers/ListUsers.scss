@@ -47,8 +47,8 @@
         @include flex(100%, row, flex-start, center);
         margin-bottom: 20px;
         .btn-primary{
-            background-color: $secondary-color-light;
-            color: $primary-color-dark;
+            background-color: $secondary-color;
+            color: $white;
             &:hover{
                 border-color: transparent;
             }
