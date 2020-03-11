@@ -58,13 +58,16 @@ export default function ListUsers(props) {
             {viewUsersActives ? ( 
                 <UsersActive 
                     usersActive={usersActive}
+                    setViewModal={setViewModal}
+                    setModalTitle={setModalTitle}
+                    setModalContent={setModalContent}
                     setReloadUsers={setReloadUsers}
                 /> 
             ) : ( 
                 <UsersInactives 
                     usersInactive={usersInactive} 
                     setViewModal={setViewModal}
-                    etModalTitle={setModalTitle}
+                    setModalTitle={setModalTitle}
                     setModalContent={setModalContent}
                     setReloadUsers={setReloadUsers}
                 /> 
