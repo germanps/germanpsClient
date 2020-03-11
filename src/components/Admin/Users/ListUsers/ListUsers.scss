@@ -1,0 +1,60 @@
+@import '../../../../scss/index.scss';
+
+.list-users{
+    
+    &__switch {
+        @include flex(100%, row, flex-start,  center);
+        
+
+        > button {
+            margin-right: 20px;
+
+            &.ant-switch-checked{
+                background-color: $secondary-color-light;
+            }
+        }
+        
+    }
+
+    .users-active {
+        background-color: $white;
+        padding: 10px 20px;
+
+        .ant-list-item-meta {
+            @include flex(100%, row, flex-start, center);
+        }
+        .ant-list-item-action{
+            .ant-btn{
+                color: $white;
+           
+                &.btn-warning{
+                    background-color: $secondary-color-light;
+                }
+                &.btn-primary{
+                    background-color: $sahara;
+                }
+                &.btn-danger{
+                    background-color: $monza;
+                } 
+                &:hover{
+                    border-color: transparent;
+                }
+            }
+        }
+    }
+
+    .list-user__header{
+        @include flex(100%, row, flex-start, center);
+        margin-bottom: 20px;
+        .btn-primary{
+            background-color: $secondary-color;
+            color: $white;
+            &:hover{
+                border-color: transparent;
+            }
+            &:focus{
+                border-color: $secondary-color-dark;
+            }
+        }
+    }
+}

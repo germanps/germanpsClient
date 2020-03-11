@@ -1,0 +1,70 @@
+@import "../../../scss/index.scss";
+
+.login-form{
+    .ant-form-item{
+        
+        &.no-margin{
+            margin: 0
+        }
+
+        //Checkbox
+        .ant-checkbox.ant-checkbox-checked{
+            .ant-checkbox-inner{
+                background-color: #ff8f00;
+                border-color: #ff8f00;
+            }
+        }
+    }
+
+    &__input{
+        .ant-input-prefix {
+            i {
+                font-size: 0em + 22px / $defaultFontSize;
+            }
+        }
+
+        input{
+            font-size:  0em + 20px / $defaultFontSize;
+            padding: 20px 20px 20px 40px !important;
+
+            &:focus{
+                border-color: $secondary-color-light; 
+                box-shadow: none;
+                box-shadow: 0 0 1px 1px $secondary-color !important;
+            }
+            &:hover{
+                border-color: $secondary-color-light !important; 
+                box-shadow: none;
+            }
+
+           
+        }
+        &:hover{
+            border-color: $secondary-color-light; 
+            box-shadow: none;
+        }
+    }
+    &__button{
+        width: 100%;
+        font-size: 0em + 22px / $defaultFontSize;
+        background-color: $secondary-color;
+        color: $white;
+        height: 42px;
+        
+        &:hover{
+            background-color: $secondary-color-light;
+            border-color: $secondary-color-light;
+            color: $wildsand;
+        }
+        &:active{
+            background-color: $secondary-color-light;
+            color: $wildsand;
+            border:0;
+        }
+        &:focus{
+            background-color: $secondary-color-light; 
+            color: $white ;
+            box-shadow: none;
+        }
+    }
+}
