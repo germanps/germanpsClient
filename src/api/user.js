@@ -142,3 +142,26 @@ export function updateUserApi(token, user, userId) {
         return err.message;
     })
 }
+
+//activar/desactivar usuario
+export function activateUserApi(token, userId, status) {
+    const url = `${BASE_PATH}/api/${API_VERSION}/activate-user/${userId}`;
+    const params = {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify({
+            active: status
+        })
+    };
+
+    return fetch(url, params).then(response => {
+        return response.json();
+    }).then(result => {
+        return result.message;
+    }).catch(err => {
+        return err.message;
+    });
+}

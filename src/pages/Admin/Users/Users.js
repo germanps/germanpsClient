@@ -9,7 +9,7 @@ export default function Users() {
     //stado usuarios
     const [usersActive, setUsersActive] = useState([]);
     const [usersInactive, setUsersInactive] = useState([]);
-    const [reloadUsers, setReloadUsers] = useState(false);
+    const [reloadUsers, setReloadUsers] = useState(false);//recargar la parte del doom sin hacer reload
     const token = getAccessTokenApi();    
 
     //didmount
