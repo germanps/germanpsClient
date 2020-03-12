@@ -3,7 +3,7 @@ import { Switch, List, Button, Icon, Modal as AntdModal, notification } from 'an
 import Modal from '../../../Modal/Modal';
 import DragSortableList from 'react-drag-sortable';
 import "./MenuWebList.scss";
-import { updateMenuApi } from '../../../../api/menu';
+import { updateMenuApi, activateMenuApi } from '../../../../api/menu';
 import { getAccessTokenApi } from "../../../../api/auth";
 
 const { confirm } = AntdModal;
@@ -23,13 +23,22 @@ export default function MenuWebList(props){
         menu.forEach(item => {
             listItemsArray.push({
                 content: (
-                    <MenuItem item={item} />
+                    <MenuItem item={item} activateMenu={activateMenu} />
                 )
             })
         });
 
         setListItems(listItemsArray);
     }, [menu]);
+
+    const activateMenu = (menu, status) => {
+        const accessToken = getAccessTokenApi();
+        activateMenuApi(accessToken, menu._id, status).then(response => {
+            notification["success"]({
+                message: response
+            });
+        })
+    }
 
 
     const onSort = (sortedList, dropEvent) => {
@@ -64,11 +73,11 @@ export default function MenuWebList(props){
 }
 
 function MenuItem(props) {
-    const { item } = props;
+    const { item, activateMenu } = props;
     return(
         <List.Item
             actions={[
-                <Switch defaultChecked={item.active} />,
+                <Switch defaultChecked={item.active} onChange={e => activateMenu(item, e)} />,
                 <Button type="primary">
                     <Icon type="edit" />
                 </Button>,
