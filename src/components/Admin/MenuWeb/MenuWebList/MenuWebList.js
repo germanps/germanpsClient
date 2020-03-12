@@ -3,6 +3,8 @@ import { Switch, List, Button, Icon, Modal as AntdModal, notification } from 'an
 import Modal from '../../../Modal/Modal';
 import DragSortableList from 'react-drag-sortable';
 import "./MenuWebList.scss";
+import { updateMenuApi } from '../../../../api/menu';
+import { getAccessTokenApi } from "../../../../api/auth";
 
 const { confirm } = AntdModal;
 
@@ -33,7 +35,14 @@ export default function MenuWebList(props){
     const onSort = (sortedList, dropEvent) => {
         console.log(sortedList);
         
-    }
+        const accessToken = getAccessTokenApi();
+        
+        sortedList.forEach(item => {
+            const { _id } = item.content.props.item;
+            const order = item.rank;
+            updateMenuApi(accessToken, _id, { order });
+        });
+    };
 
     return (
 
