@@ -48,3 +48,23 @@ export function activateMenuApi(token, menuId, status) {
         console.log(err);
     })
 }
+
+export function addMenuApi(token, menu) {
+    const url = `${BASE_PATH}/api/${API_VERSION}/add-menu`;
+    const params = {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+            Authorization: token
+        },
+        body: JSON.stringify(menu)
+    }
+
+    return fetch(url, params).then(response => {
+        return response.json()
+    }).then(result => {
+        return result.message;
+    }).catch(err => {
+        console.log(err);
+    });
+}

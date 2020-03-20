@@ -5,7 +5,7 @@ import DragSortableList from 'react-drag-sortable';
 import "./MenuWebList.scss";
 import { updateMenuApi, activateMenuApi } from '../../../../api/menu';
 import { getAccessTokenApi } from "../../../../api/auth";
-import AddMenuWebAddMenuWebForm from '../AddMenuWebForm/AddMenuWebForm';
+import AddMenuWebForm from '../AddMenuWebForm/AddMenuWebForm';
 
 const { confirm } = AntdModal;
 
@@ -58,10 +58,11 @@ export default function MenuWebList(props){
         setIsVisibleModal(true);
         setModalTitle("Nuevo menú");
         setModalContent(
-            <div>
-                <AddMenuWebAddMenuWebForm />
-            </div>
-        )
+            <AddMenuWebForm
+                setIsVisibleModal={setIsVisibleModal}
+                setReloadMenu={setReloadMenu}
+            />   
+        );
        
     }
 
