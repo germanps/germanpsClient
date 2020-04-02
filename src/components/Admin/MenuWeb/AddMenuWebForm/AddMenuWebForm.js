@@ -80,6 +80,7 @@ function AddForm(props) {
             <Form.Item>
                 <Input 
                     addonBefore={selectBefore}
+                    //prefix={<Icon type="link" />}
                     placeholder="URL"
                     value={menuWebData.url}
                     onChange={e => setMenuWebData({ ...menuWebData, url: e.target.value })}
