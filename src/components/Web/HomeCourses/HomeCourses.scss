@@ -1,0 +1,74 @@
+@import '../../../scss/index.scss';
+
+.home-courses{
+    margin-top: 50px;
+    margin-bottom: 50px;
+
+    &__title{
+        text-align: center;
+
+        h2{
+            color: $wildsand;
+            font-weight: bold;
+            font-size: 32px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+    }
+
+    .row-courses{
+        .ant-col{
+            padding: 1rem !important;
+        }
+    }
+    &__card{
+        border: 0;
+        background-color: $abbey;
+        overflow: hidden;
+        box-shadow: 0 0 10px 2px rgba($color: #000000, $alpha: .75);
+
+        .ant-card-body{
+            text-align: center;
+
+            .ant-card-meta-title,
+            .ant-card-meta-description{
+                color: $white;
+            }
+
+            .ant-card-meta-title{
+                font-weight: bold;
+            }
+        }
+        .ant-card-actions {
+            background-color: transparent;
+            border: 0;
+
+            button{
+                width: 90%;
+                background-color: transparent;
+                border: 1px solid $secondary-color;
+                height: 35px;
+                color: $white;
+            }
+        }
+    }
+    &__more{
+        text-align: center;
+        button{
+
+            background-color: $primary-color;
+            border: 0;
+            color: $wildsand;
+            width: 200px;
+            height: 40px;
+            font-weight: bold;
+            font-size: 14px;
+            text-transform: uppercase;
+
+            &:hover{
+                background-color: $secondary-color;
+                color: $white;
+            }
+        }
+    }
+}

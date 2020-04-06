@@ -11,6 +11,7 @@ import AdminMenuWeb from '../pages/Admin/MenuWeb';
 // Pages
 import Home from '../pages/Home';
 import Contact from '../pages/Contact';
+import Courses from '../pages/Courses';
 
 // Others
 import Error404 from '../pages/Error404';
@@ -66,6 +67,12 @@ const routes = [
                 //cargará cuando la ruta sea exacta a: germapn.com/contact
                 path: "/contact",
                 component: Contact,
+                exact: true
+            },
+            {
+                //cargará cuando la ruta sea exacta a: germapn.com/courses
+                path: "/courses",
+                component: Courses,
                 exact: true
             },
             {
