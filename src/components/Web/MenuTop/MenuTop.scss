@@ -1,0 +1,28 @@
+@import "./../../../scss/index.scss";
+.menu-top-web{
+    position: sticky;
+    top: 0;
+    background-color: $background-dark;
+    border: 0;
+    @include flex(auto, row, flex-start, center);
+
+    li{
+        border: 0 !important;
+
+        a{
+            color: $white !important;
+
+            &:hover{
+                color: $secondary-color !important;
+            }
+        }
+    }
+
+    &__logo{
+        padding: 10px;
+
+        img{
+            width: 80px;
+        }
+    }
+}
